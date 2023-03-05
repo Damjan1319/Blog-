@@ -17,56 +17,57 @@ function ajaxCallBack(url, func, data = {}) {
 
 try {
     let btn = document.querySelector("#btn");
-    let validationMsg = [];
+    // let validationMsg = [];
     function checkValidation() {
         console.log(validationMsg);
-        if (validationMsg.length == 2) {
+        if (validationMsg.length == 1) {
             btn.removeAttribute('disabled');
         } else {
             btn.setAttribute('disabled', '');
         }
 
-    }
-
-    let provera = document.querySelector("#emailM");
-
-    provera.addEventListener("blur", proveri);
 
 
-    function proveri() {
+        let provera = document.querySelector("#emailM");
 
-        //RegEx Email
-        console.log(this.value);
-        let regEmail = /^[a-z][\d\w\.]*\@[a-z]{3,}(\.[a-z]{2,4}){1,3}$/;
+        provera.addEventListener("blur", proveri);
 
-        if (regEmail.test(this.value)) {
 
-            this.nextElementSibling.classList.add("correct");
-            this.nextElementSibling.innerHTML = "Valid entry";
-            console.log("ok");
-            if (validationMsg.indexOf("email") == -1) {
-                validationMsg.push("email");
+        function proveri() {
+
+            //RegEx Email
+            console.log(this.value);
+            let regEmail = /^[a-z][\d\w\.]*\@[a-z]{3,}(\.[a-z]{2,4}){1,3}$/;
+
+            if (regEmail.test(this.value)) {
+
+                this.nextElementSibling.classList.add("correct");
+                this.nextElementSibling.innerHTML = "Valid entry";
+                console.log("ok");
+                if (validationMsg.indexOf("email") == -1) {
+                    validationMsg.push("email");
+                }
+
+                checkValidation();
+            } else {
+                this.nextElementSibling.classList.remove("correct");
+                this.nextElementSibling.classList.add("mistake");
+                this.nextElementSibling.innerHTML = `Format:</br>example.example@example.eg`;
+                console.log("bad");
+
+                if (validationMsg.indexOf("email") != -1) {
+                    const index = validationMsg.indexOf('email');
+                    const x = validationMsg.splice(index, 1);
+                }
+                checkValidation();
             }
-
-            checkValidation();
-        } else {
-            this.nextElementSibling.classList.remove("correct");
-            this.nextElementSibling.classList.add("mistake");
-            this.nextElementSibling.innerHTML = `Format:</br>example.example@example.eg`;
-            console.log("bad");
-
-            if (validationMsg.indexOf("email") != -1) {
-                const index = validationMsg.indexOf('email');
-                const x = validationMsg.splice(index, 1);
-            }
-            checkValidation();
         }
     }
-}
-catch { }
-try {
-    let content = document.querySelector("#content");
 
+
+
+    let content = document.querySelector("#content");
+    validationMsg = [];
     content.addEventListener("blur", count);
 
     function count() {
@@ -93,9 +94,8 @@ try {
             checkValidation();
         }
     }
-} catch {
-
 }
+catch { }
 
 let likes = document.querySelectorAll('.likes');
 

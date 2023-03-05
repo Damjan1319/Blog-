@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         if ($errors == 0) {
             $result = insertMessage($email, $subject, $content);
-            var_dump("JBG");
+
 
             if ($result) {
                 $responese = ['msg' => "Success add comment"];

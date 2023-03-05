@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>Majning</title>
+	<title>Vlog Post</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="icon" href="images/logomy.ico" type="image/ico">

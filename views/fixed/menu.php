@@ -7,7 +7,7 @@
     <section>
         <?php if (isset($_SESSION['user'])) : ?>
             <div class="profile-image">
-                <img src="assets/images/<?= $_SESSION["user"]->image ?>" />
+                <a href="index.php?page=userPanel"> <img src="assets/images/<?= $_SESSION["user"]->image ?>" /></a>
             </div>
             <span><?= $_SESSION['user']->username ?></span>
         <?php endif ?>
@@ -58,8 +58,8 @@
                         <div class=""></div>
                     </li>
 
-                    <li><input type='submit' id='logIn' value="Prijavi se"></li>
-                    <li><a href="index.php?page=registration"><input type='button' id='logIn' value="Registruj se"></a></li>
+                    <li><input type='submit' id='logIn' value="Log In"></li>
+                    <li><a href="index.php?page=registration"><input type='button' id='logIn' value="Sign In"></a></li>
                 <?php endif; ?>
 
                 </ul>
@@ -68,7 +68,7 @@
         <?php if (isset($_SESSION['user']) || isset($_SESSION['admin'])) : ?>
             <form action="models/logout.php" method="post">
                 <ul class="actions stacked">
-                    <li><input type='submit' id='logIn' value="Odjavi se"></li>
+                    <li><input type='submit' id='logIn' value="Log Out"></li>
                 </ul>
             </form>
         <?php endif; ?>

@@ -13,7 +13,7 @@ if (isset($_SESSION['user'])) {
 <div class="post-flex">
     <?php
     foreach ($blogs as $blog) :
-        $comment = getCommentsForBlog($blog->blog_ID);
+        $comment = getCommentsForBlog($blog->blog_ID);;
     ?>
 
 
@@ -22,7 +22,7 @@ if (isset($_SESSION['user'])) {
             <header>
                 <div class="title">
                     <h2><a href=""><?= $blog->title ?></a></h2>
-                    <p><?= $blog->content ?></p>
+                    <!-- <p><?= $blog->content ?></p> -->
                 </div>
 
                 <div class="meta">
@@ -34,7 +34,7 @@ if (isset($_SESSION['user'])) {
             </header>
 
             <a href="index.php?page=single&post=<?= $blog->blog_ID ?>" class="image featured"><img src="assets/images/<?= $blog->images ?>" alt="${postImgAltTag[i]}" /></a>
-
+            <p><?= $blog->content ?></p>
             <footer>
                 <ul class="actions">
                     <li><a href="index.php?page=single&post=<?= $blog->blog_ID ?>" class="button large">See Post</a></li>

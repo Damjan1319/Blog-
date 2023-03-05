@@ -2907,6 +2907,8 @@ ul.posts article header> :last-child {
 	border: solid 1px rgba(160, 160, 160, 0.3);
 	margin: 0 0 3em 0;
 	position: relative;
+
+
 }
 
 .post>header {
@@ -3574,7 +3576,7 @@ body.single #wrapper {
 #sidebar {
 	margin-right: 3em;
 	min-width: 22em;
-	width: 22em;
+	width: 100%;
 }
 
 #sidebar>* {
@@ -3988,6 +3990,29 @@ a {
 	border-bottom: none !important;
 }
 
+
+
+
+#subject {
+	width: 100%;
+	height: 70px !important;
+}
+
 .postMax {
-	width: 100% !important;
+	width: 60% !important;
+}
+
+#post-1 {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	flex-direction: column;
+}
+
+#post-1 form {
+	width: 60%;
+}
+
+#post-1 .card {
+	width: 60%;
 }

@@ -2,6 +2,7 @@
 $blogs = getBlogData();
 $comments = getComments();
 $users = getAll('users');
+$messages = getAll('messages');
 ?>
 
 
@@ -17,6 +18,7 @@ if (isset($_SESSION['admin'])) :
                 <li><a href="#tab13">Delete Post</a></li>
                 <li><a href="#tab14">Delete Comment</a></li>
                 <li><a href="#tab15">Useres Status and Roles</a></li>
+                <li><a href="#tab16">Messages</a></li>
 
             </ul>
             <section class="tab_content_wrapper">
@@ -122,6 +124,28 @@ if (isset($_SESSION['admin'])) :
                                                 <input type="hidden" value="<?= $u->ID ?> " name="userID">
                                             </form>
                                         </td>
+                                    </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+                <article class="tab_content" id="tab16">
+                    <div class="table-responsive">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Content</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($messages as $m) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $m->email ?></th>
+                                        <td><?= $m->subject ?></td>
+                                        <td><?= $m->content ?></td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>

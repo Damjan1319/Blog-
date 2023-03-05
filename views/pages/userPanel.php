@@ -1,6 +1,7 @@
 <?php
 $comments = getUserComments($_SESSION['user']->ID);
 $posts = getUserPosts($_SESSION['user']->ID);
+$user = getAll('users');
 
 ?>
 
@@ -96,6 +97,18 @@ if (isset($_SESSION['user'])) :
                             </tbody>
                         </table>
                     </div>
+                </article>
+                <article class="tab_content" id="tab17">
+                    <form action="models/editUser.php" method="post" enctype="multipart/form-data">
+
+                        <label for="fname">Username</label>
+                        <input type="text" id="fname" name="username" value="<?= $_SESSION['user']->username ?>">
+                        <img src="assets/images/<?= $_SESSION['user']->image ?>" alt="">
+                        </br>
+                        <input type="file" name="fileImg">
+                        <input type="hidden" name="idUser" value="<?= $_SESSION['user']->ID  ?>">
+                        <input type="submit" value="Submit" id='proverax'>
+                    </form>
                 </article>
 
             </section>

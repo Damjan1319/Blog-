@@ -262,3 +262,28 @@ function editPost($id, $title, $content, $fileName)
     $result = $prepare->fetch();
     return $result;
 }
+
+
+function numPost($id)
+{
+    global $conn;
+    $upit = "SELECT COUNT(*) FROM `blogs` WHERE author_ID = ?";
+    $prepare = $conn->prepare($upit);
+    $prepare->bindParam(1, $id);
+    $prepare->execute();
+    $result = $prepare->fetchAll();
+    return $result;
+}
+
+function editUser($id, $userName, $fileName)
+{
+    global $conn;
+    $upit = "UPDATE `users` SET `username` = ?, `image` = ? WHERE `users`.`ID` = ?";
+    $prepare = $conn->prepare($upit);
+    $prepare->bindParam(1, $userName);
+    $prepare->bindParam(2, $fileName);
+    $prepare->bindParam(3, $id);
+    $prepare->execute();
+    $result = $prepare->fetchAll();
+    return $result;
+}
