@@ -19,6 +19,7 @@ if (isset($_SESSION['user'])) :
                 <li><a href="#tab14">Edit and Delete Post</a></li>
                 <li><a href="#tab16">Delete Comment</a></li>
                 <li><a href="#tab17">User Profile</a></li>
+                <li><a href="#tab18">Gallery</a></li>
 
 
 
@@ -109,6 +110,17 @@ if (isset($_SESSION['user'])) :
                         <input type="hidden" name="idUser" value="<?= $_SESSION['user']->ID  ?>">
                         <input type="submit" value="Submit" id='proverax'>
                     </form>
+                </article>
+                <article class="tab_content" id="tab18">
+                    <div class="row d-flex justify-content-around">
+                        <?php foreach ($posts as $p) : ?>
+                            <div class="col-6 d-flex justify-content-center">
+                                <img href="" src="assets/images/<?= $p->images ?>">
+                            </div>
+
+
+                        <?php endforeach ?>
+                    </div>
                 </article>
 
             </section>

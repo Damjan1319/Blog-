@@ -26,14 +26,14 @@ if (isset($_SESSION['user'])) {
                 </div>
 
                 <div class="meta">
-                    <time class="published" datetime="${dateTime[i]}"><?= $blog->created_at ?></time>
+                    <time class="published" datetime="${dateTime[i]}"><?= substr($blog->created_at, 0, 10) ?></time>
                     <a href="#" class="author"><span class="name">
                             <?= $blog->username ?>
-                        </span><img src="assets/images/<?= $blog->image ?>" alt="${avatarImgAltTag[i]}" /></a>
+                        </span><img src="assets/images/<?= $blog->image ?>" alt="<?= $blog->title ?>" class="imgP" /></a>
                 </div>
             </header>
 
-            <a href="index.php?page=single&post=<?= $blog->blog_ID ?>" class="image featured"><img src="assets/images/<?= $blog->images ?>" alt="${postImgAltTag[i]}" /></a>
+            <a href="index.php?page=single&post=<?= $blog->blog_ID ?>" class="image featured"><img src="assets/images/<?= $blog->images ?>" alt="<?= $blog->title ?>" /></a>
             <p><?= $blog->content ?></p>
             <footer>
                 <ul class="actions">

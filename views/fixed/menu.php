@@ -7,7 +7,7 @@
     <section>
         <?php if (isset($_SESSION['user'])) : ?>
             <div class="profile-image">
-                <a href="index.php?page=userPanel"> <img src="assets/images/<?= $_SESSION["user"]->image ?>" /></a>
+                <a href="index.php?page=userPanel"> <img src="assets/images/<?= $_SESSION["user"]->image ?>" class="img" /></a>
             </div>
             <span><?= $_SESSION['user']->username ?></span>
         <?php endif ?>

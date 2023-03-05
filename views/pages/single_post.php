@@ -20,15 +20,15 @@ if (isset($_GET['post'])) :
                 <header>
                     <div class="title">
                         <h2><a href="#"><?= $p->title ?></a></h2>
-                        <p><?= $p->content ?></p>
+
                     </div>
                     <div class="meta">
-                        <time class="published"><?= $p->created_at ?></time>
-                        <a href="#" class="author"><span class="name"><?= $post[0]->username ?></span><img src="images/avatar.jpg" alt="" /></a>
+                        <time class="published"><?= substr($p->created_at, 0, 10) ?></time>
+                        <a href="#" class="author"><span class="name"><?= $post[0]->username ?></span><img src="assets/images/<?= $post[0]->image ?>" class="imgP" alt="<?= $p->title ?>" /></a>
                     </div>
                 </header>
                 <span class="image featured"><img src="assets/images/<?= $p->images ?>" alt="" /></span>
-
+                <p><?= $p->content ?></p>
                 <footer>
                     <ul class="stats">
                         <li><a class="icon solid fa-heart likes" ss="<?= $p->blog_ID ?>" id="b<?= $p->blog_ID ?>"><?= getLikes($p->blog_ID)->Num ?></a></li>
@@ -62,11 +62,11 @@ if (isset($_GET['post'])) :
                     foreach ($comments as $comm) :
                     ?>
                         <div class="d-flex flex-row comment-row">
-                            <div class="p-2"><span class="round"><img src="assets/images/<?= $comm->image ?>" alt="user" width="50"></span></div>
+                            <div class="p-2"><span class="round"><img src="assets/images/<?= $comm->image ?>" alt="user" width="50" class="imgP"></span></div>
                             <div class="comment-text w-100 tbColor">
                                 <h5><?= $comm->username ?></h5>
                                 <div class="comment-footer">
-                                    <span class="date"><?= $comm->created_at ?></span>
+                                    <span class="date"><?= substr($comm->created_at, 0, 10) ?></span>
 
                                 </div>
                                 <p class="m-b-5 m-t-10 "><?= $comm->content ?></p>
