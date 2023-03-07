@@ -1,17 +1,93 @@
-function ajaxCallBack(url, func, data = {}) {
+function ajaxCallBack(url, func,method, data = {}) {
     $.ajax({
         url: url,
-        method: 'Post',
+        method: method,
         dataType: 'JSON',
         data: data,
         success: func,
         error: function (xhr) { console.error(xhr); }
+    })
+}
+
+//PRETRAGA, FILTRIRANJE I DINAMICKO ISPISIVANJE
+try{
+    let page = 1;
+    let per_page = 6;
 
 
+    $('#searchA').on('input', function () {
+        getBlogs();
     })
 
+//    $('#sort_order').change(function () {
+//        getBlogss();
+//    })
 
+    getBlogs();
+
+    function getBlogs() {
+        var search = $('#searchA').val();
+
+        let sortOrder = $('#sort_order').val();
+        let data = {
+            search: search,
+            sortOrder: sortOrder,
+            blogsPerPage: per_page,
+            page: page
+        }
+        ajaxCallBack('models/filteringSorting.php', function(data){
+            showBlogs(data);
+        },'Get',data)
+    }
+
+    function showBlogs(data) {
+        let blogs = data.blogs;
+        let html = '';
+        if (blogs.length != 0) {
+            blogs.forEach(e => {
+                html += `<article class="post">
+
+            <header>
+                <div class="title">
+                    <h2><a href="">${e.title}</a></h2>
+                    <!-- <p>${e.content}</p> -->
+                </div>
+
+                <div class="meta">
+                    <time class="published">${e.created_at}</time>
+                    <a href="#" class="author"><span class="name">
+                            ${e.username}
+                        </span><img src="assets/images/${e.image}" alt="${e.title}" class="imgP" /></a>
+                </div>
+            </header>
+
+            <a href="index.php?page=single&post=${e.blog_ID}" class="image featured"><img src="assets/images/${e.images}" alt="${e.title}" /></a>
+            <p>${e.content}</p>
+
+            <footer>
+                <ul class="actions">
+                    <li><a href="index.php?page=single&post=${e.blog_ID}" class="button large">See Post</a></li>
+                </ul>
+                <ul class="stats" id='footerPost'>
+                    <li>
+                        <a class=" icon solid fa-heart likes" id="b${e.blog_ID}" ss="${e.blog_ID}"></a>
+                     </li>
+                    <li>
+                           <a href="index.php?page=single&post=${e.blog_ID}" class="icon solid fa-comment"></a></li>
+                </ul>
+            </footer>
+        </article>`;
+            });
+        }
+            else {
+                html = 'No Blogs with Specified filter';
+            }
+        $('.post-flex').html(html);
+
+    }
 }
+catch(e){}
+
 
 
 
@@ -29,21 +105,19 @@ try {
 
 
         let provera = document.querySelector("#emailM");
-
         provera.addEventListener("blur", proveri);
+        console.log(provera)
 
 
         function proveri() {
 
             //RegEx Email
-            console.log(this.value);
             let regEmail = /^[a-z][\d\w\.]*\@[a-z]{3,}(\.[a-z]{2,4}){1,3}$/;
 
             if (regEmail.test(this.value)) {
 
                 this.nextElementSibling.classList.add("correct");
                 this.nextElementSibling.innerHTML = "Valid entry";
-                console.log("ok");
                 if (validationMsg.indexOf("email") == -1) {
                     validationMsg.push("email");
                 }
@@ -53,7 +127,6 @@ try {
                 this.nextElementSibling.classList.remove("correct");
                 this.nextElementSibling.classList.add("mistake");
                 this.nextElementSibling.innerHTML = `Format:</br>example.example@example.eg`;
-                console.log("bad");
 
                 if (validationMsg.indexOf("email") != -1) {
                     const index = validationMsg.indexOf('email');
@@ -118,7 +191,7 @@ likes.forEach(l => {
             else {
                 element.innerHTML = parseInt(element.innerHTML + 1);
             }
-        }, data)
+        }, 'Post',data)
     });
 
 
