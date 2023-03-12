@@ -21,7 +21,7 @@ if (isset($_SESSION['user'])) {
 
             <header>
                 <div class="title">
-                    <h2><a href=""><?= $blog->title ?></a></h2>
+                    <h2><?= $blog->title ?></h2>
                     <!-- <p><?= $blog->content ?></p> -->
                 </div>
 
