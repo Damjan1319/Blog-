@@ -9,46 +9,11 @@ if (isset($_SESSION['user'])) {
 <?php if (isset($_GET["success"])) {  ?>
     <div class="alert alert-success"> <?php echo $_GET["success"] ?> </div>
 <?php } ?>
+                        <form id="search-form">
 
-<div class="post-flex">
-    <?php
-    foreach ($blogs as $blog) :
-        $comment = getCommentsForBlog($blog->blog_ID);;
-    ?>
+                            <input type="text" placeholder="Search..." id='searchA'>
 
+                        </form>
+    <div class="post-flex">
 
-        <article class="post">
-
-            <header>
-                <div class="title">
-                    <h2><a href=""><?= $blog->title ?></a></h2>
-                    <!-- <p><?= $blog->content ?></p> -->
-                </div>
-
-                <div class="meta">
-                    <time class="published" datetime="${dateTime[i]}"><?= substr($blog->created_at, 0, 10) ?></time>
-                    <a href="#" class="author"><span class="name">
-                            <?= $blog->username ?>
-                        </span><img src="assets/images/<?= $blog->image ?>" alt="<?= $blog->title ?>" class="imgP" /></a>
-                </div>
-            </header>
-
-            <a href="index.php?page=single&post=<?= $blog->blog_ID ?>" class="image featured"><img src="assets/images/<?= $blog->images ?>" alt="<?= $blog->title ?>" /></a>
-            <p><?= $blog->content ?></p>
-            <footer>
-                <ul class="actions">
-                    <li><a href="index.php?page=single&post=<?= $blog->blog_ID ?>" class="button large">See Post</a></li>
-                </ul>
-                <ul class="stats" id='footerPost'>
-                    <li><a class=" icon solid fa-heart likes" id="b<?= $blog->blog_ID ?>" ss="<?= $blog->blog_ID ?>"><?= getLikes($blog->blog_ID)->Num ?></a></li>
-                    <?php if (isset($_SESSION['user'])) : ?>
-                        <input type="hidden" id="like" value="<?= $_SESSION['user']->ID ?>">
-                    <?php endif ?>
-                    <li><a href="index.php?page=single&post=<?= $blog->blog_ID ?>" class="icon solid fa-comment"><?=
-                                                                                                                    $comment[0]->Num ?></a></li>
-                </ul>
-            </footer>
-        </article>
-
-    <?php endforeach; ?>
 </div>
