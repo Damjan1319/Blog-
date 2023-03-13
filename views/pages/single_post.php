@@ -31,11 +31,11 @@ if (isset($_GET['post'])) :
                 <p><?= $p->content ?></p>
                 <footer>
                     <ul class="stats">
-                        <li><a class="icon solid fa-heart likes" ss="<?= $p->blog_ID ?>" id="b<?= $p->blog_ID ?>"><?= getLikes($p->blog_ID)->Num ?></a></li>
+                        <li><a class="icon solid fa-heart likesx" ss="<?= $p->blog_ID ?>" id="b<?= $p->blog_ID ?>"><?= getLikes($p->blog_ID)->Num ?></a></li>
                         <?php if (isset($_SESSION['user'])) : ?>
                             <input type="hidden" id="like" value="<?= $_SESSION['user']->ID ?>">
                         <?php endif ?>
-                        <li><a href="#" class="icon solid fa-comment"><?= $comment[0]->Num ?></a></li>
+                        <li><a href="#" class="icon solid fa-comment"><?= getCommentsForBlog($p->blog_ID)[0]->Num ?></a></li>
                     </ul>
                 </footer>
             </article>

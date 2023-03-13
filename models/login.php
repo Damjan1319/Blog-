@@ -28,16 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!$userEmail) {
                 $responese = ['msg' => "User doesn't exist"];
                 echo (json_encode($responese));
-                http_response_code(200);
-                header('Location: ../index.php?page=home&error=User doesn t exist');
+                http_response_code(201);
+                exit;
             } else {
                 if ($userEmail[0]->password != $enc) {
                     $responese = ['msg' => "Wrong password"];
                     echo json_encode($responese);
                     http_response_code(200);
-
-                    header('Location: ../index.php?page=home&error= e-mail ili pasword nisu ispravni');
-
+                    exit;
                     // proba
 
                     exit;
@@ -45,20 +43,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($userEmail[0]->status == 1) {
                         if ($userEmail[0]->role == 1) {
                             $_SESSION['user'] = $userEmail[0];
-
-                            header('Location: ../index.php?page=home error= e-mail ili pasword nisu ispravni');
+                            $responese = ['msg' => "Log In success"];
+                            echo json_encode($responese);
+                            http_response_code(200);
+                            exit;
                         }
                         if ($userEmail[0]->role == 2) {
                             $_SESSION['admin'] = $userEmail[0];
-                            header('Location: ../index.php?page=home&&error= e-mail ili pasword nisu ispravni');
+                            $responese = ['msg' => "Log In success"];
+                            echo json_encode($responese);
+                            http_response_code(200);
+                            exit;
                         }
                     }
                 }
             }
-            header('Location: ../index.php?page=home&success= Uspesno ste se ulogovali');
         } else {
-
-            header('Location: ../index.php?page=home&&error= Doslo je do greske');
+            $responese = ['msg' => "Validation error"];
+            echo json_encode($responese);
+            http_response_code(200);
+            exit;
         }
     } catch (PDOException $ex) {
 

@@ -10,12 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = checkLikes($author_id, $blog_id);
         if ($result == 1) {
             $delete = removeLike($author_id, $blog_id);
-            $responese = ['msg' => "delete", 'id' => $blog_id];
+            $count = getLikes($blog_id);
+            $responese = ['msg' => "delete", 'id' => $blog_id, 'num' => $count];
             echo json_encode($responese);
             http_response_code(200);
         } else {
             $insert = like($author_id, $blog_id);
-            $responese = ['msg' => "like", 'id' => $blog_id];
+            $count = getLikes($blog_id);
+            $responese = ['msg' => "like", 'id' => $blog_id, 'num' => $count];
             echo json_encode($responese);
             http_response_code(200);
         }

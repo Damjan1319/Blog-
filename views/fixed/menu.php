@@ -58,13 +58,14 @@
                         <div class=""></div>
                     </li>
 
-                    <li><input type='submit' id='logIn' value="Log In"></li>
+                    <li><input type='button' id='logIn' value="Log In"></li>
                     <li><a href="index.php?page=registration"><input type='button' id='logIn' value="Sign In"></a></li>
                 <?php endif; ?>
 
                 </ul>
 
         </form>
+        <div class="errors"></div>
         <?php if (isset($_SESSION['user']) || isset($_SESSION['admin'])) : ?>
             <form action="models/logout.php" method="post">
                 <ul class="actions stacked">
