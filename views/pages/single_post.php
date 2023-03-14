@@ -44,36 +44,49 @@ if (isset($_GET['post'])) :
                     <input type="hidden" value="<?= $_SESSION['user']->ID ?>" name="user">
                     <input type="hidden" value="<?= $p->blog_ID ?>" name="post">
                     <label for="subject">Comment</label>
-                    <textarea id="subject" name="comment" placeholder="Write something.." style="height:600px"></textarea>
+                    <textarea id="subject" name="comment" placeholder="Write something.." style="height:600px; border:none;"></textarea>
                     <input type="submit" value="Send comment">
                 </form>
 
             <?php endif; ?>
 
             <div class="card">
+                <!-- COMMENTS -->
                 <div class="card-body">
-                    <h4 class="card-title">Recent Comments</h4>
+                    <p>
+                        <button class="recentCom" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                            View comments
+                        </button>
+                    </p>
+
                 </div>
 
-                <div class="comment-widgets m-b-20">
+                <div class="comment-widgets m-b-20 res">
+                    <div style="min-height: 120px;">
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            <div class="card card-body">
+                                <?php
+                                $comments = getCommentContent($p->blog_ID);
+                                foreach ($comments as $comm) :
+                                ?>
+                                    <div class="d-flex flex-row comment-row">
+                                        <div class="p-2"><span class="round"><img src="assets/images/<?= $comm->image ?>" alt="user" width="50" class="imgP"></span></div>
+                                        <div class="comment-text w-100 tbColor">
+                                            <h5><?= $comm->username ?></h5>
+                                            <div class="comment-footer">
+                                                <span class="date"><?= substr($comm->created_at, 0, 10) ?></span>
 
-                    <?php
-                    $comments = getCommentContent($p->blog_ID);
-                    foreach ($comments as $comm) :
-                    ?>
-                        <div class="d-flex flex-row comment-row">
-                            <div class="p-2"><span class="round"><img src="assets/images/<?= $comm->image ?>" alt="user" width="50" class="imgP"></span></div>
-                            <div class="comment-text w-100 tbColor">
-                                <h5><?= $comm->username ?></h5>
-                                <div class="comment-footer">
-                                    <span class="date"><?= substr($comm->created_at, 0, 10) ?></span>
+                                            </div>
+                                            <p class="m-b-5 m-t-10 "><?= $comm->content ?></p>
+                                        </div>
+                                    </div>
 
-                                </div>
-                                <p class="m-b-5 m-t-10 "><?= $comm->content ?></p>
+                                <?php endforeach; ?>
                             </div>
                         </div>
+                    </div>
 
-                    <?php endforeach; ?>
+
 
                 </div>
             </div>

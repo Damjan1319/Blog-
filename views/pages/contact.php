@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12 d-flex justify-content-center">
 
-        <div class="col-6 ">
+        <div class="col-10 ">
             <form action="models/send_msg.php" method="post">
 
                 <label for="subject">Subject</label>

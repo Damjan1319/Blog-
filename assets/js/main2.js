@@ -10,44 +10,43 @@ function ajaxCallBack(url, func, method, data = {}) {
 }
 
 //PRETRAGA, FILTRIRANJE I DINAMICKO ISPISIVANJE
-try {
-    let page = 1;
-    let per_page = 6;
+let page = 1;
+let per_page = 6;
 
 
-    $('#searchA').on('input', function () {
-        getBlogs();
-    })
-
-    //    $('#sort_order').change(function () {
-    //        getBlogss();
-    //    })
-
+$('#searchA').on('input', function () {
     getBlogs();
+})
 
-    function getBlogs() {
-        var search = $('#searchA').val();
+//    $('#sort_order').change(function () {
+//        getBlogss();
+//    })
 
-        let sortOrder = $('#sort_order').val();
-        let data = {
-            search: search,
-            sortOrder: sortOrder,
-            blogsPerPage: per_page,
-            page: page
-        }
-        ajaxCallBack('models/filteringSorting.php', function (data) {
-            showBlogs(data);
-        }, 'Get', data)
+getBlogs();
+
+function getBlogs() {
+    var search = $('#searchA').val();
+
+    let sortOrder = $('#sort_order').val();
+    let data = {
+        search: search,
+        sortOrder: sortOrder,
+        blogsPerPage: per_page,
+        page: page
     }
+    ajaxCallBack('models/filteringSorting.php', function (data) {
+        showBlogs(data);
+    }, 'Get', data)
+}
 
-    function showBlogs(data) {
-        let blogs = data.blogs;
-        console.log(blogs);
-        let html = '';
-        if (blogs.length != 0) {
-            blogs.forEach(e => {
+function showBlogs(data) {
+    let blogs = data.blogs;
+    console.log(blogs);
+    let html = '';
+    if (blogs.length != 0) {
+        blogs.forEach(e => {
 
-                html += `<article class="post">
+            html += `<article class="post">
 
             <header>
                 <div class="title">
@@ -79,44 +78,41 @@ try {
                 </ul>
             </footer>
         </article>`;
-            });
-        }
-        else {
-            html = 'No Blogs with Specified filter';
-        }
-        $('.post-flex').html(html);
-
-
-    }
-
-}
-catch (e) { }
-
-$(document).ready(function () {
-
-    let likeBtn = document.querySelectorAll(".likes");
-    console.log(likeBtn);
-    likeBtn.forEach(e => {
-        e.addEventListener('click', Like(this))
-    })
-    function Like(obj) {
-        console.log(obj);
-        let id = obj.getAttribute('ss');
-        let data = { blog_id: id, author_id: document.querySelector('#userID').value };
-        $.ajax({
-            url: 'models/likes.php',
-            method: 'POST',
-            dataType: 'JSON',
-            data: data,
-            success: function (data) {
-                getBlogs();
-            },
-            error: function (data) {
-                getBlogs();
-            }
         });
     }
-})
+    else {
+        html = 'No Blogs with Specified filter';
+    }
+    $('.post-flex').html(html);
+
+    let likeBtn = document.querySelectorAll(".likes");
+
+    likeBtn.forEach(e => {
+        e.addEventListener('click', function () {
+            let id = e.getAttribute('ss');
+            let aut = document.querySelector("#userID")
+            if (aut == null) {
+                // obavesti korisnika da mora da se loguje
+
+            }
+            else {
+                let data = { blog_id: id, author_id: document.querySelector('#userID').value };
+                $.ajax({
+                    url: 'models/likes.php',
+                    method: 'POST',
+                    dataType: 'JSON',
+                    data: data,
+                    success: function (data) {
+                        getBlogs();
+                    },
+                    error: function (data) {
+                        getBlogs();
+                    }
+                });
+            }
+        })
+    })
+}
 
 
 try {
@@ -428,8 +424,9 @@ try {
                 }
             }
 
-
         })
     });
 
 } catch { }
+// const collapseElementList = document.querySelectorAll('.collapse')
+// const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl))

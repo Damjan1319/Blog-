@@ -248,6 +248,20 @@ textarea {
 	padding: 0px 12px;
 }
 
+#post-4 {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.fx {
+	display: flex;
+	justify-content: center !important;
+	align-items: center !important;
+	flex-direction: row !important;
+}
+
 @media screen and (max-width: 1680px) {
 
 	body,
@@ -3044,6 +3058,7 @@ ul.posts article header> :last-child {
 	.post {
 		border-left: 0;
 		border-right: 0;
+		width: 90%;
 		left: -3em;
 		width: calc(100% + (3em * 2));
 	}
@@ -3132,6 +3147,7 @@ ul.posts article header> :last-child {
 		left: -1.5em;
 		margin: 0 0 2em 0;
 		width: calc(100% + (1.5em * 2));
+		width: 95%;
 
 	}
 
@@ -3487,7 +3503,7 @@ body {
 
 @media screen and (max-width: 980px) {
 	.post {
-		width: 100% !important;
+		width: 95% !important;
 	}
 
 	#header .links {
@@ -3838,7 +3854,7 @@ body.is-menu-visible #menu {
 }
 
 #slika-autor {
-	width: 60%;
+	width: 80%;
 
 }
 
@@ -4047,12 +4063,24 @@ a {
 		align-items: center;
 	}
 
-	#card {
+	.card {
 		width: 100% !important;
 		display: flex !important;
 		justify-content: center;
 		align-items: flex-start;
 	}
+
+	.res {
+		width: 100% !important;
+	}
+
+	.post {
+		width: 95%;
+	}
+}
+
+.textP {
+	margin-left: 8px;
 }
 
 
@@ -4076,11 +4104,15 @@ a {
 }
 
 #search-form {
-	widht: 100%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 }
 
 #search-form #searchA {
 	width: 60%;
+}
+
+.recentCom {
+	padding: 0px !important;
 }
